@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Build') {
+            steps {
+                bat 'mvn clean install'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                bat 'docker build -t online-learning-app .'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                bat 'docker-compose up -d'
+            }
+        }
+    }
+}
