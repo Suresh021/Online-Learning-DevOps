@@ -9,10 +9,8 @@ pipeline {
             steps {
 
                 sh '''
-                docker run --rm \
-                -v $PWD:/app \
-                -w /app \
-                maven:3.9-eclipse-temurin-21 \
+                apt-get update
+                apt-get install -y maven
                 mvn clean install
                 '''
 
@@ -20,11 +18,11 @@ pipeline {
 
         }
 
-        stage('Docker Build') {
+        stage('Verify Build') {
 
             steps {
 
-                sh 'docker build -t onlinelearningapp .'
+                sh 'ls target'
 
             }
 
@@ -34,7 +32,7 @@ pipeline {
 
             steps {
 
-                sh 'docker-compose up -d'
+                echo 'Deployment handled using Docker Compose separately'
 
             }
 
