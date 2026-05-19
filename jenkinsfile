@@ -1,6 +1,10 @@
 pipeline {
 
-    agent any
+    agent {
+        docker {
+            image 'maven:3.9-eclipse-temurin-21'
+        }
+    }
 
     stages {
 
@@ -8,11 +12,7 @@ pipeline {
 
             steps {
 
-                sh '''
-                apt-get update
-                apt-get install -y maven
-                mvn clean install
-                '''
+                sh 'mvn clean install'
 
             }
 
@@ -32,7 +32,7 @@ pipeline {
 
             steps {
 
-                echo 'Deployment handled using Docker Compose separately'
+                echo 'Deployment handled using Docker Compose'
 
             }
 
