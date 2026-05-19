@@ -1,24 +1,39 @@
 pipeline {
+
     agent any
 
     stages {
 
         stage('Build') {
+
             steps {
-                bat 'mvn clean install'
+
+                sh 'mvn clean install'
+
             }
+
         }
 
         stage('Docker Build') {
+
             steps {
-                bat 'docker build -t online-learning-app .'
+
+                sh 'docker build -t onlinelearningapp .'
+
             }
+
         }
 
         stage('Deploy') {
+
             steps {
-                bat 'docker-compose up -d'
+
+                sh 'docker-compose up -d'
+
             }
+
         }
+
     }
+
 }
