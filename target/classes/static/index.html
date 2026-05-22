@@ -4,22 +4,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Learning Tracker</title>
+    <title>EduTrack - Online Learning Platform</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <div class="stars"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">📚</span>
+                <span class="logo-text">EduTrack</span>
+            </div>
+            <div class="nav-right">
+                <div class="user-stats">
+                    <span id="navProgress">0% Progress</span>
+                </div>
+                <button class="nav-btn" onclick="goToDashboard()" id="backBtn" style="display:none;">← Back</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
     <div class="container">
-        <h1>My Courses</h1>
-        <div id="courseList"></div>
-        <p id="progress">Progress: 0/0</p>
+
+        <!-- Dashboard View -->
+        <div id="dashboardView" class="view active">
+            <section class="hero">
+                <h1>Welcome to EduTrack</h1>
+                <p>Your personal online learning platform</p>
+            </section>
+
+            <section class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalCourses">0</div>
+                    <div class="stat-label">Total Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalProgress">0%</div>
+                    <div class="stat-label">Overall Progress</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="lessonsCompleted">0</div>
+                    <div class="stat-label">Lessons Done</div>
+                </div>
+            </section>
+
+            <section class="courses-section">
+                <h2>Your Courses</h2>
+                <div id="coursesList" class="courses-grid"></div>
+            </section>
+        </div>
+
+        <!-- Course View -->
+        <div id="courseView" class="view">
+            <div class="course-header" id="courseHeader"></div>
+
+            <div class="course-layout">
+                <aside class="lessons-sidebar" id="lessonsSidebar"></aside>
+                <main class="course-content">
+                    <div id="lessonContent"></div>
+                </main>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal for Quiz -->
+    <div id="quizModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeQuiz()">×</button>
+            <div id="quizContainer"></div>
+        </div>
     </div>
 
     <script src="scripts.js"></script>
-    <script>
-        displayCourses();
-        updateProgress();
-    </script>
 </body>
 
 </html>
